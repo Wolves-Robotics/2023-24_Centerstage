@@ -56,11 +56,11 @@ public class OnePlayerTele extends OpMode {
     @Override
     public void loop() {
         // Only player
-        if (gamepad1.left_stick_button) {
-            movement.changeMode(runtime);
-        }
         if (gamepad1.options) {
             consts.imu.resetYaw();
+        }
+        if (gamepad1.dpad_up) {
+            movement.changeMode(runtime);
         }
         if (gamepad1.right_bumper) {
             claw.switchPos(runtime);
@@ -86,7 +86,7 @@ public class OnePlayerTele extends OpMode {
         if (gamepad1.right_stick_button) {
             motorPower = arm.setGrab();
         }
-        if (gamepad1.dpad_up) {
+        if (gamepad1.left_stick_button) {
             motorPower = arm.setRest();
         }
         if (gamepad1.left_bumper) {
