@@ -40,6 +40,8 @@ public class OnePlayerTele extends OpMode {
         popper = new Popper(hardwareMap);
         lights = new Lights(hardwareMap);
 
+        lights.lightStates = Lights.LightStates.INITIALIZE;
+
         telem = new MultipleTelemetry(FtcDashboard.getInstance().getTelemetry(), telemetry);
 
         runtime = new ElapsedTime();
@@ -85,18 +87,26 @@ public class OnePlayerTele extends OpMode {
         }
         if (gamepad1.right_stick_button) {
             motorPower = arm.setGrab();
+            lights.lightStates = Lights.LightStates.CLAWDOWN;
         }
         if (gamepad1.left_stick_button) {
             motorPower = arm.setRest();
+            lights.lightStates = Lights.LightStates.CLAWUP;
         }
         if (gamepad1.left_bumper) {
             motorPower = arm.setScore();
+            lights.lightStates = Lights.LightStates.SCORE;
         }
         if (gamepad1.left_trigger >= 0.75) {
             motorPower = arm.setLong();
         }
 
+        if (runtime.seconds() > 90) {
+            lights.lightStates = Lights.LightStates.ENDGAME;
+        }
+
         // Final Updates
         movement.run(gamepad1, motorPower, telem);
+        lights.setLights();
     }
 }
