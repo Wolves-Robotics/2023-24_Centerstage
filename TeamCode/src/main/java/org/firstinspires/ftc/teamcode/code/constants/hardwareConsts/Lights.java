@@ -13,7 +13,8 @@ public class Lights {
         OPEN,
         CLAWDOWN,
         CLAWUP,
-        INITIALIZE
+        INITIALIZE,
+        OFF
     }
 
     Consts consts;
@@ -30,19 +31,27 @@ public class Lights {
         switch (lightStates) {
             case INITIALIZE:
                 consts.lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.HOT_PINK);
+                break;
             case CLOSE:
                 consts.lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.VIOLET);
+                break;
             case OPEN:
                 consts.lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.YELLOW);
+                break;
             case SCORE:
                 consts.lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.BEATS_PER_MINUTE_FOREST_PALETTE);
+                break;
             case CLAWUP:
                 consts.lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.BREATH_BLUE);
+                break;
             case CLAWDOWN:
                 consts.lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.HEARTBEAT_RED);
+                break;
             case ENDGAME:
                 consts.lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.BEATS_PER_MINUTE_RAINBOW_PALETTE);
-                consts.lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.CP1_2_BEATS_PER_MINUTE);
+                break;
+            case OFF:
+                consts.lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.BLACK);
         }
     }
 }

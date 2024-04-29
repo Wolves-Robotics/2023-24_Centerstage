@@ -1,13 +1,13 @@
 package org.firstinspires.ftc.teamcode.code.baseClasses;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.code.autonomous.camera.MainCameraPipeline;
-import org.firstinspires.ftc.teamcode.code.autonomous.pathing.MainAutoPath;
+import org.firstinspires.ftc.teamcode.code.autonomous.pathing.RedClosePath;
 import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.code.constants.AutoConsts;
@@ -40,6 +40,10 @@ public abstract class MainAutonomous extends OpMode
 
     public abstract void setVariables();
 
+    private void setPathing() {
+        pathingTool = new MainAutoPath();
+    }
+
     public void init() {
         setVariables();
 
@@ -52,19 +56,21 @@ public abstract class MainAutonomous extends OpMode
 
         drive = new SampleMecanumDrive(hardwareMap);
 
-        pathingTool = new MainAutoPath();
+        setPathing();
 
         pathingTool.initVarsAndCamera(hardwareMap, drive, telemetry, color, startDis, endDis);
+
+        consts.lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.BLACK);
     }
 
 
     public void start() {
         runtime.reset();
         while (runtime.time() < 1.5) {}
-        purplePath = pathingTool.makePurplePath();
-        purpleToBackdropPath = pathingTool.makePurpleToBackdropPath();
-        yellowPlacePath = pathingTool.makeYellowPlacePath();
-        parkPath = pathingTool.makeParkPath();
+        purplePath = pathingTool.getPurplePath();
+        purpleToBackdropPath = pathingTool.getPurpleToBackdropPath();
+        yellowPlacePath = pathingTool.getYellowPlacePath();
+        parkPath = pathingTool.getParkPath();
 
         drive = pathingTool.getDrive();
         drive.followTrajectorySequenceAsync(purplePath);

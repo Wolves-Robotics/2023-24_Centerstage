@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.code.autonomous.pathing;
+package org.firstinspires.ftc.teamcode.code.baseClasses;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
@@ -8,7 +8,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.code.constants.AutoConsts;
-import org.firstinspires.ftc.teamcode.code.constants.Consts;
 import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.trajectorysequence.TrajectorySequence;
 
@@ -16,23 +15,24 @@ import java.util.Objects;
 
 public class MainAutoPath {
     private MultipleTelemetry telemetry;
+    protected double centerLine, leftLine, rightLine;
+    protected double color;
 
     private AutoConsts autoConsts;
 
-    private double centerLine, leftLine, rightLine, color;
-    private String startDis, endDis, position;
+    protected String startDis, endDis, position;
 
-    private Pose2d startPos, endPos;
+    protected Pose2d startPos, endPos;
 
-    private SampleMecanumDrive drive;
+    protected SampleMecanumDrive drive;
 
-    private TrajectorySequence purplePath, purpleToBackdropPath, yellowPlacePath, gotoWhitePath,  parkPath;
+    protected TrajectorySequence purplePath, purpleToBackdropPath, yellowPlacePath, gotoWhitePath,  parkPath;
 
-    public void initVarsAndCamera(HardwareMap hardwareMap, SampleMecanumDrive drive, Telemetry telemetry, String color, String startDis, String endDis) {
-        autoConsts = new AutoConsts(hardwareMap);
+    public void initVarsAndCamera(HardwareMap _hardwareMap, SampleMecanumDrive drive, Telemetry telemetry, String color, String startDis, String endDis) {
+        autoConsts = new AutoConsts(_hardwareMap);
 
-        // generate lines that the purple placement will depend upon
-        // changes whether the bot starts close or far side
+//         generate lines that the purple placement will depend upon
+//         changes whether the bot starts close or far side
         centerLine = 14;
         leftLine = 8.;
         rightLine = 15.5;
@@ -41,18 +41,17 @@ public class MainAutoPath {
             leftLine = -39.;
             rightLine = -31.;
         }
-
+        if (color == "red")
+        {
+            this.color = 1.;
+        } else {
+            this.color = -1.;
+        }
         // sets other variables used in path making
         this.drive = drive;
         this.startDis = startDis;
         this.endDis = endDis;
         this.telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
-
-        if (Objects.equals(color, "red")) {
-            this.color = 1.;
-        } else if (Objects.equals(color, "blue")) {
-            this.color = -1.;
-        }
 
         // start position of the bot on roadrunner's coordinate place
         startPos = new Pose2d(centerLine, -61 * this.color, Math.toRadians(-90 * this.color));
@@ -66,17 +65,17 @@ public class MainAutoPath {
         autoConsts.setCamera();
     }
 
-    private String getTeamElementPos() {
+    protected String getTeamElementPos() {
         String position = autoConsts.processor.getPropPosition();
         autoConsts.stopCamera();
 
         telemetry.addData("Position: ", position);
         telemetry.update();
-
+//
         return position;
     }
 
-    public TrajectorySequence makePurplePath() {
+    public TrajectorySequence getPurplePath() {
         this.position = getTeamElementPos();
 
         if (color == 1.) {
@@ -121,10 +120,10 @@ public class MainAutoPath {
                             .build();
                 } else {
                     purplePath = drive.trajectorySequenceBuilder(startPos)
-                            .lineTo(new Vector2d(rightLine + 10, 50))
+                            .lineTo(new Vector2d(rightLine + 10, -50))
                             .lineToLinearHeading(new Pose2d(leftLine+1, 30, Math.toRadians(0)))
-                            .lineTo(new Vector2d(rightLine, 30))
-                            .lineTo(new Vector2d(centerLine, 42))
+                            .lineTo(new Vector2d(rightLine, -30))
+                            .lineTo(new Vector2d(centerLine, -42))
                             .turn(Math.toRadians(180))
                             .build();
                 }
@@ -185,7 +184,7 @@ public class MainAutoPath {
         return purplePath;
     }
 
-    public TrajectorySequence makePurpleToBackdropPath() {
+    public TrajectorySequence getPurpleToBackdropPath() {
         if (Objects.equals(startDis, "close")) {
             purpleToBackdropPath = drive.trajectorySequenceBuilder(endPos)
                     .lineTo(new Vector2d(50, -41 * color))
@@ -211,7 +210,7 @@ public class MainAutoPath {
         return purpleToBackdropPath;
     }
 
-    public TrajectorySequence makeYellowPlacePath() {
+    public TrajectorySequence getYellowPlacePath() {
         if (color == 1.) {
             if (Objects.equals(position, "left")) {
                 yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
@@ -250,14 +249,14 @@ public class MainAutoPath {
         return yellowPlacePath;
     }
 
-    public TrajectorySequence makeParkPath() {
+    public TrajectorySequence getParkPath() {
         if (Objects.equals(endDis, "close")) {
             parkPath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(50, -60 * color))
+                    .lineTo(new Vector2d(50, 60))
                     .build();
         } else {
             parkPath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(50, -10 * color))
+                    .lineTo(new Vector2d(50, 10))
                     .build();
         }
 

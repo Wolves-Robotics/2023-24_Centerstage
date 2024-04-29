@@ -13,7 +13,7 @@ public class Consts {
     public IMU imu;
 
     public DcMotor frontLeft, frontRight, backLeft, backRight, slideL, slideR;
-    public Servo popper, arm, joint, claw;
+    public Servo popper, arm, joint, claw, drone;
     public RevBlinkinLedDriver lights;
 
     public Consts(HardwareMap _hardwareMap) {
@@ -51,11 +51,13 @@ public class Consts {
         arm = hardwareMap.get(Servo.class, "idk1");
         joint = hardwareMap.get(Servo.class, "idk2");
         claw = hardwareMap.get(Servo.class, "idk3");
+        drone = hardwareMap.get(Servo.class, "drone");
 
         popper.setDirection(Servo.Direction.FORWARD);
         arm.setDirection(Servo.Direction.REVERSE);
         joint.setDirection(Servo.Direction.FORWARD);
         claw.setDirection(Servo.Direction.FORWARD);
+        drone.setDirection(Servo.Direction.REVERSE);
     }
 
     private void setLights() {

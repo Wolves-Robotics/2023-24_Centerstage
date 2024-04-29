@@ -27,7 +27,7 @@ public class Slide {
     }
 
     public final void hang() {
-        consts.slideL.setPower(0.3);
-        consts.slideR.setPower(0.3);
+        consts.slideL.setPower(0.2);
+        consts.slideR.setPower(0.2);
     }
 }

@@ -10,6 +10,7 @@ import org.firstinspires.ftc.teamcode.code.constants.Consts;
 import org.firstinspires.ftc.teamcode.code.constants.Movement;
 import org.firstinspires.ftc.teamcode.code.constants.hardwareConsts.Arm;
 import org.firstinspires.ftc.teamcode.code.constants.hardwareConsts.Claw;
+import org.firstinspires.ftc.teamcode.code.constants.hardwareConsts.Drone;
 import org.firstinspires.ftc.teamcode.code.constants.hardwareConsts.Lights;
 import org.firstinspires.ftc.teamcode.code.constants.hardwareConsts.Popper;
 import org.firstinspires.ftc.teamcode.code.constants.hardwareConsts.Slide;
@@ -23,6 +24,7 @@ public class OnePlayerTele extends OpMode {
     private Claw claw;
     private Popper popper;
     private Lights lights;
+    private Drone drone;
 
     private MultipleTelemetry telem;
 
@@ -39,6 +41,7 @@ public class OnePlayerTele extends OpMode {
         claw = new Claw(hardwareMap);
         popper = new Popper(hardwareMap);
         lights = new Lights(hardwareMap);
+        drone = new Drone(hardwareMap);
 
         lights.lightStates = Lights.LightStates.INITIALIZE;
 
@@ -99,6 +102,10 @@ public class OnePlayerTele extends OpMode {
         }
         if (gamepad1.left_trigger >= 0.75) {
             motorPower = arm.setLong();
+        }
+
+        if (gamepad1.dpad_down) {
+            drone.shoot();
         }
 
         if (runtime.seconds() > 90) {
