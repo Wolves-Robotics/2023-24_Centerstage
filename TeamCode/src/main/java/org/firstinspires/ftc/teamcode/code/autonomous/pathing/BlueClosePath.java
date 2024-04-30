@@ -6,20 +6,19 @@ import com.acmerobotics.roadrunner.geometry.Vector2d;
 import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.code.baseClasses.MainAutoPath;
 
-import java.util.Objects;
-
 public class BlueClosePath extends MainAutoPath {
+    @Override
     public TrajectorySequence getPurplePath() {
         this.position = getTeamElementPos();
 
-        if (Objects.equals(position, "left")) {
+        if (position == "left") {
             purplePath = drive.trajectorySequenceBuilder(startPos)
                     .lineTo(new Vector2d(22.5, 33))
                     .lineTo(new Vector2d(22.5, 45))
                     .lineTo(new Vector2d(14, 42))
                     .turn(Math.toRadians(-90))
                     .build();
-        } else if (Objects.equals(position, "mid")) {
+        } else if (position == "mid") {
             purplePath = drive.trajectorySequenceBuilder(startPos)
                     .lineTo(new Vector2d(14, 40))
                     .lineTo(new Vector2d(13, 30))
@@ -35,30 +34,30 @@ public class BlueClosePath extends MainAutoPath {
                     .turn(Math.toRadians(180))
                     .build();
         }
-
         endPos = purplePath.end();
 
         return purplePath;
     }
 
+    @Override
     public TrajectorySequence getPurpleToBackdropPath() {
-        if (Objects.equals(startDis, "close")) {
+        if (startDis == "close") {
             purpleToBackdropPath = drive.trajectorySequenceBuilder(endPos)
                     .lineTo(new Vector2d(50, 41))
                     .build();
         } else {
-            if (Objects.equals(position, "mid")) {
+            if (position == "mid") {
                 purpleToBackdropPath = drive.trajectorySequenceBuilder(endPos)
-                        .lineTo(new Vector2d(-53, -42))
-                        .lineTo(new Vector2d(-53, -2))
-                        .lineTo(new Vector2d(38, -2))
-                        .lineTo(new Vector2d(50, -41))
+                        .lineTo(new Vector2d(-53, 42))
+                        .lineTo(new Vector2d(-53, 2))
+                        .lineTo(new Vector2d(38, 2))
+                        .lineTo(new Vector2d(50, 41))
                         .build();
             } else {
                 purpleToBackdropPath = drive.trajectorySequenceBuilder(endPos)
-                        .lineTo(new Vector2d(-35, -2))
-                        .lineTo(new Vector2d(38, -2))
-                        .lineTo(new Vector2d(50, -41))
+                        .lineTo(new Vector2d(-35, 2))
+                        .lineTo(new Vector2d(38, 2))
+                        .lineTo(new Vector2d(50, 41))
                         .build();
             }
         }
@@ -67,38 +66,23 @@ public class BlueClosePath extends MainAutoPath {
         return purpleToBackdropPath;
     }
 
+    @Override
     public TrajectorySequence getYellowPlacePath() {
-        if (Objects.equals(position, "left")) {
+        if (position == "left") {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(53, -34))
+                    .lineTo(new Vector2d(53, 34))
                     .build();
-            endPos = new Pose2d(53, -34, Math.toRadians(180));
-        } else if (Objects.equals(position, "mid")) {
+        } else if (position == "mid") {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(53, -26))
+                    .lineTo(new Vector2d(53, 26))
                     .build();
-            endPos = new Pose2d(53, -26, Math.toRadians(180));
         } else {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(53, -21))
+                    .lineTo(new Vector2d(53, 21))
                     .build();
-            endPos = new Pose2d(53, -21, Math.toRadians(180));
         }
+        endPos = yellowPlacePath.end();
 
         return yellowPlacePath;
-    }
-    @Override
-    public TrajectorySequence getParkPath() {
-        if (Objects.equals(endDis, "close")) {
-            parkPath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(50, 60))
-                    .build();
-        } else {
-            parkPath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(50, 10))
-                    .build();
-        }
-
-        return parkPath;
     }
 }

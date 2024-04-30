@@ -6,13 +6,11 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.code.autonomous.camera.MainCameraPipeline;
-import org.firstinspires.ftc.teamcode.code.autonomous.pathing.RedClosePath;
+import org.firstinspires.ftc.teamcode.code.autonomous.pathing.PathingWrapper;
 import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.code.constants.AutoConsts;
 import org.firstinspires.ftc.teamcode.code.constants.Consts;
-import org.firstinspires.ftc.vision.VisionPortal;
 
 @Disabled
 @Autonomous
@@ -25,24 +23,13 @@ public abstract class MainAutonomous extends OpMode
 
     SampleMecanumDrive drive;
 
-    TrajectorySequence purplePath, purpleToBackdropPath, yellowPlacePath, gotoWhitePath, parkPath;
+    TrajectorySequence purplePath, purpleToBackdropPath, yellowPlacePath, parkPath;
 
     private ElapsedTime runtime;
-
-
-
-    private MainCameraPipeline cameraPipeline;
-    private VisionPortal portal;
-
-    double centerLine, leftLine, rightLine;
 
     MainAutoPath pathingTool;
 
     public abstract void setVariables();
-
-    private void setPathing() {
-        pathingTool = new MainAutoPath();
-    }
 
     public void init() {
         setVariables();
@@ -56,7 +43,7 @@ public abstract class MainAutonomous extends OpMode
 
         drive = new SampleMecanumDrive(hardwareMap);
 
-        setPathing();
+        pathingTool = PathingWrapper.getPath(color, startDis);
 
         pathingTool.initVarsAndCamera(hardwareMap, drive, telemetry, color, startDis, endDis);
 
@@ -66,7 +53,6 @@ public abstract class MainAutonomous extends OpMode
 
     public void start() {
         runtime.reset();
-        while (runtime.time() < 1.5) {}
         purplePath = pathingTool.getPurplePath();
         purpleToBackdropPath = pathingTool.getPurpleToBackdropPath();
         yellowPlacePath = pathingTool.getYellowPlacePath();

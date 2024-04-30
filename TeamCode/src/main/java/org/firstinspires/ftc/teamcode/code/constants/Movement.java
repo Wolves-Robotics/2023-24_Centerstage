@@ -40,10 +40,20 @@ public class Movement {
         consts.backRight.setPower(backRightPower * motorPower);
     }
 
-    public final void robotCentricDrive(Gamepad gamepad, double motorPower, MultipleTelemetry telem) {
+    public final void landonRobotCentric(Gamepad gamepad, double motorPower, MultipleTelemetry telem) {
+        double x = gamepad.left_trigger + gamepad.right_trigger;
+        robotCentricDrive(gamepad, motorPower, telem, x);
+    }
+
+    public final void regularRobotCentric(Gamepad gamepad, double motorPower, MultipleTelemetry telem) {
+        double x = gamepad.left_stick_x;
+        robotCentricDrive(gamepad, motorPower, telem, x);
+    }
+
+    private void robotCentricDrive(Gamepad gamepad, double motorPower, MultipleTelemetry telem, double xInput) {
         telem.addLine("Robot Centric");
         double y = -gamepad.left_stick_y; // Remember, Y stick value is reversed
-        double x = gamepad.left_stick_x * 1.1; // Counteract imperfect strafing
+        double x = xInput * 1.1; // Counteract imperfect strafing
         double rx = gamepad.right_stick_x;
 
         // Denominator is the largest motor power (absolute value) or 1
@@ -68,8 +78,9 @@ public class Movement {
         }
     }
 
-    public final void run(Gamepad gamepad, double power, MultipleTelemetry telem) {
-        if (robotCentricBool) {robotCentricDrive(gamepad, power, telem);}
+    public final void run(Gamepad gamepad, double power, MultipleTelemetry telem, boolean landon) {
+        if (robotCentricBool) {if (landon) {landonRobotCentric(gamepad, power, telem);}
+                               else {regularRobotCentric(gamepad, power, telem);}}
         else {fieldCentricDrive(gamepad, power, telem);}
     }
 }

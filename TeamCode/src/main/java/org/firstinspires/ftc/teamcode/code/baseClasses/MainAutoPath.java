@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.trajectoryseque
 
 import java.util.Objects;
 
-public class MainAutoPath {
+abstract public class MainAutoPath {
     private MultipleTelemetry telemetry;
     protected double centerLine, leftLine, rightLine;
     protected double color;
@@ -71,186 +71,18 @@ public class MainAutoPath {
 
         telemetry.addData("Position: ", position);
         telemetry.update();
-//
+
         return position;
     }
 
-    public TrajectorySequence getPurplePath() {
-        this.position = getTeamElementPos();
+    abstract public TrajectorySequence getPurplePath();
 
-        if (color == 1.) {
-            if (Objects.equals(startDis, "close")) {
-                if (Objects.equals(position, "left")) {
-                    purplePath = drive.trajectorySequenceBuilder(startPos)
-                            .lineTo(new Vector2d(rightLine + 10, -50))
-                            .lineToLinearHeading(new Pose2d(leftLine + 1, -30, Math.toRadians(0)))
-                            .lineTo(new Vector2d(rightLine + 1, -30))
-                            .lineTo(new Vector2d(centerLine, -42))
-                            .turn(Math.toRadians(180))
-                            .build();
-                } else if (Objects.equals(position, "mid")) {
-                    purplePath = drive.trajectorySequenceBuilder(startPos)
-                            .lineTo(new Vector2d(centerLine, -40))
-                            .lineTo(new Vector2d(centerLine - 1, -30))
-                            .lineTo(new Vector2d(centerLine, -42))
-                            .turn(Math.toRadians(-90))
-                            .build();
-                } else {
-                    purplePath = drive.trajectorySequenceBuilder(startPos)
-                            .lineTo(new Vector2d(rightLine + 7, -33))
-                            .lineTo(new Vector2d(rightLine + 7, -45))
-                            .lineTo(new Vector2d(centerLine, -42))
-                            .turn(Math.toRadians(-90))
-                            .build();
-                }
-            } else if (Objects.equals(startDis, "far")) {
-                if (Objects.equals(position, "left")) {
-                    purplePath = drive.trajectorySequenceBuilder(startPos)
-                            .lineTo(new Vector2d(leftLine - 7.5, -33))
-                            .lineTo(new Vector2d(leftLine - 7.5, -45))
-                            .lineTo(new Vector2d(centerLine, -42))
-                            .turn(Math.toRadians(-90))
-                            .build();
-                } else if (Objects.equals(position, "mid")) {
-                    purplePath = drive.trajectorySequenceBuilder(startPos)
-                            .lineTo(new Vector2d(centerLine, -40))
-                            .lineTo(new Vector2d(centerLine + 1, -30))
-                            .lineTo(new Vector2d(centerLine, -42))
-                            .turn(Math.toRadians(-90))
-                            .build();
-                } else {
-                    purplePath = drive.trajectorySequenceBuilder(startPos)
-                            .lineTo(new Vector2d(rightLine + 10, -50))
-                            .lineToLinearHeading(new Pose2d(leftLine+1, 30, Math.toRadians(0)))
-                            .lineTo(new Vector2d(rightLine, -30))
-                            .lineTo(new Vector2d(centerLine, -42))
-                            .turn(Math.toRadians(180))
-                            .build();
-                }
-            }
+    abstract public TrajectorySequence getPurpleToBackdropPath();
 
-        } else {
-            if (Objects.equals(startDis, "close")) {
-                if (Objects.equals(position, "left")) {
-                    purplePath = drive.trajectorySequenceBuilder(startPos)
-                            .lineTo(new Vector2d(rightLine + 7, 33))
-                            .lineTo(new Vector2d(rightLine + 7, 45))
-                            .lineTo(new Vector2d(centerLine, 42))
-                            .turn(Math.toRadians(-90))
-                            .build();
-                } else if (Objects.equals(position, "mid")) {
-                    purplePath = drive.trajectorySequenceBuilder(startPos)
-                            .lineTo(new Vector2d(centerLine, 40))
-                            .lineTo(new Vector2d(centerLine - 1, 30))
-                            .lineTo(new Vector2d(centerLine, 42))
-                            .turn(Math.toRadians(90))
-                            .build();
-                } else {
-                    purplePath = drive.trajectorySequenceBuilder(startPos)
-                            .lineTo(new Vector2d(rightLine + 10, 50))
-                            .lineToLinearHeading(new Pose2d(leftLine, 30, Math.toRadians(0)))
-                            .lineTo(new Vector2d(rightLine, 30))
-                            .lineTo(new Vector2d(centerLine, 42))
-                            .turn(Math.toRadians(180))
-                            .build();
-                }
-            } else if (Objects.equals(startDis, "far")) {
-                if (Objects.equals(position, "left")) {
-                    purplePath = drive.trajectorySequenceBuilder(startPos)
-                            .lineTo(new Vector2d(leftLine - 10, 50))
-                            .lineToLinearHeading(new Pose2d(rightLine - 1, 30, Math.toRadians(180)))
-                            .lineTo(new Vector2d(leftLine, 30))
-                            .lineTo(new Vector2d(centerLine, 42))
-                            .build();
-                } else if (Objects.equals(position, "mid")) {
-                    purplePath = drive.trajectorySequenceBuilder(startPos)
-                            .lineTo(new Vector2d(centerLine, 40))
-                            .lineTo(new Vector2d(centerLine + 1, 32))
-                            .lineTo(new Vector2d(centerLine, 42))
-                            .turn(Math.toRadians(90))
-                            .build();
-                } else {
-                    purplePath = drive.trajectorySequenceBuilder(startPos)
-                            .lineTo(new Vector2d(leftLine - 7.5, 38))
-                            .lineTo(new Vector2d(leftLine - 7.5, 45))
-                            .lineTo(new Vector2d(centerLine, 42))
-                            .turn(Math.toRadians(90))
-                            .build();
-                }
-            }
-        }
-        endPos = new Pose2d(centerLine, -42 * color, Math.toRadians(180));
-
-        return purplePath;
-    }
-
-    public TrajectorySequence getPurpleToBackdropPath() {
-        if (Objects.equals(startDis, "close")) {
-            purpleToBackdropPath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(50, -41 * color))
-                    .build();
-        } else {
-            if (Objects.equals(position, "mid")) {
-                purpleToBackdropPath = drive.trajectorySequenceBuilder(endPos)
-                        .lineTo(new Vector2d(-53, -42 * color))
-                        .lineTo(new Vector2d(-53, -2 * color))
-                        .lineTo(new Vector2d(38, -2 * color))
-                        .lineTo(new Vector2d(50, -41 * color))
-                        .build();
-            } else {
-                purpleToBackdropPath = drive.trajectorySequenceBuilder(endPos)
-                        .lineTo(new Vector2d(-35, -2 * color))
-                        .lineTo(new Vector2d(38, -2 * color))
-                        .lineTo(new Vector2d(50, -41 * color))
-                        .build();
-            }
-        }
-        endPos = new Pose2d(50, -41 * color, Math.toRadians(180));
-
-        return purpleToBackdropPath;
-    }
-
-    public TrajectorySequence getYellowPlacePath() {
-        if (color == 1.) {
-            if (Objects.equals(position, "left")) {
-                yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                        .lineTo(new Vector2d(53, -33 * color))
-                        .build();
-                endPos = new Pose2d(53, -35 * color, Math.toRadians(180));
-            } else if (Objects.equals(position, "mid")) {
-                yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                        .lineTo(new Vector2d(53, -39 * color))
-                        .build();
-                endPos = new Pose2d(53, -39 * color, Math.toRadians(180));
-            } else {
-                yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                        .lineTo(new Vector2d(53, -49 * color))
-                        .build();
-                endPos = new Pose2d(53, -49 * color, Math.toRadians(180));
-            }
-        } else {
-            if (Objects.equals(position, "left")) {
-                yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                        .lineTo(new Vector2d(53, -34 * color))
-                        .build();
-                endPos = new Pose2d(53, -34 * color, Math.toRadians(180));
-            } else if (Objects.equals(position, "mid")) {
-                yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                        .lineTo(new Vector2d(53, -26 * color))
-                        .build();
-                endPos = new Pose2d(53, -26 * color, Math.toRadians(180));
-            } else {
-                yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                        .lineTo(new Vector2d(53, -21 * color))
-                        .build();
-                endPos = new Pose2d(53, -21 * color, Math.toRadians(180));
-            }
-        }
-        return yellowPlacePath;
-    }
+    abstract public TrajectorySequence getYellowPlacePath();
 
     public TrajectorySequence getParkPath() {
-        if (Objects.equals(endDis, "close")) {
+        if (endDis == "close") {
             parkPath = drive.trajectorySequenceBuilder(endPos)
                     .lineTo(new Vector2d(50, 60))
                     .build();

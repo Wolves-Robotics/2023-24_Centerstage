@@ -6,21 +6,19 @@ import com.acmerobotics.roadrunner.geometry.Vector2d;
 import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.code.baseClasses.MainAutoPath;
 
-import java.util.Objects;
-
 public class RedFarPath extends MainAutoPath {
     @Override
     public TrajectorySequence getPurplePath() {
         this.position = getTeamElementPos();
 
-        if (Objects.equals(position, "left")) {
+        if (position == "left") {
             purplePath = drive.trajectorySequenceBuilder(startPos)
                     .lineTo(new Vector2d(-46.5, -33))
                     .lineTo(new Vector2d(-46.5, -45))
                     .lineTo(new Vector2d(-37.5, -42))
                     .turn(Math.toRadians(-90))
                     .build();
-        } else if (Objects.equals(position, "mid")) {
+        } else if (position == "mid") {
             purplePath = drive.trajectorySequenceBuilder(startPos)
                     .lineTo(new Vector2d(-37.5, -40))
                     .lineTo(new Vector2d(-36.5, -30))
@@ -43,7 +41,7 @@ public class RedFarPath extends MainAutoPath {
 
     @Override
     public TrajectorySequence getPurpleToBackdropPath() {
-        if (Objects.equals(position, "mid")) {
+        if (position == "mid") {
             purpleToBackdropPath = drive.trajectorySequenceBuilder(endPos)
                     .lineTo(new Vector2d(-53, -42))
                     .lineTo(new Vector2d(-53, -2))
@@ -65,11 +63,11 @@ public class RedFarPath extends MainAutoPath {
 
     @Override
     public TrajectorySequence getYellowPlacePath() {
-        if (Objects.equals(position, "left")) {
+        if (position == "left") {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
                     .lineTo(new Vector2d(53, -33))
                     .build();
-        } else if (Objects.equals(position, "mid")) {
+        } else if (position == "mid") {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
                     .lineTo(new Vector2d(53, -39))
                     .build();
@@ -81,20 +79,5 @@ public class RedFarPath extends MainAutoPath {
         endPos = yellowPlacePath.end();
 
         return yellowPlacePath;
-    }
-
-    @Override
-    public TrajectorySequence getParkPath() {
-        if (Objects.equals(endDis, "close")) {
-            parkPath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(50, -60))
-                    .build();
-        } else {
-            parkPath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(50, -10))
-                    .build();
-        }
-
-        return parkPath;
     }
 }

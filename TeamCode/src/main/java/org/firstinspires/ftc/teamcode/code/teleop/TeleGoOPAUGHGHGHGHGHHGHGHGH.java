@@ -11,6 +11,7 @@ import org.firstinspires.ftc.teamcode.code.constants.PIDConsts.SlidePID;
 import org.firstinspires.ftc.teamcode.code.constants.Movement;
 import org.firstinspires.ftc.teamcode.code.constants.hardwareConsts.Arm;
 import org.firstinspires.ftc.teamcode.code.constants.hardwareConsts.Claw;
+import org.firstinspires.ftc.teamcode.code.constants.hardwareConsts.Drone;
 import org.firstinspires.ftc.teamcode.code.constants.hardwareConsts.Lights;
 import org.firstinspires.ftc.teamcode.code.constants.hardwareConsts.Popper;
 import org.firstinspires.ftc.teamcode.code.constants.hardwareConsts.Slide;
@@ -25,6 +26,7 @@ public class TeleGoOPAUGHGHGHGHGHHGHGHGH extends OpMode {
     private Claw claw;
     private Popper popper;
     private Lights lights;
+    private Drone drone;
 
     private MultipleTelemetry telem;
 
@@ -48,6 +50,7 @@ public class TeleGoOPAUGHGHGHGHGHHGHGHGH extends OpMode {
         claw = new Claw(hardwareMap);
         popper = new Popper(hardwareMap);
         lights = new Lights(hardwareMap);
+        drone = new Drone(hardwareMap);
 
         runtime = new ElapsedTime();
         driveSwitchTime = 0;
@@ -65,23 +68,14 @@ public class TeleGoOPAUGHGHGHGHGHHGHGHGH extends OpMode {
     public void loop() {
 
         // Player 1
-        if (gamepad1.y) {
-            slide.goUp();
-        }
-        if (gamepad1.a) {
-            slide.goDown();
-        }
-        if (gamepad1.b) {
-            slide.stay();
-        }
-        if (gamepad1.x){
-            slide.hang();
-        }
         if (gamepad1.dpad_left) {
             popper.goUp();
         }
         if (gamepad1.dpad_right) {
             popper.goDown();
+        }
+        if (gamepad1.dpad_down) {
+            drone.shoot();
         }
         if (gamepad1.options) {
             consts.imu.resetYaw();
@@ -93,6 +87,18 @@ public class TeleGoOPAUGHGHGHGHGHHGHGHGH extends OpMode {
 
 
         // Player 2
+        if (gamepad1.y) {
+            slide.goUp();
+        }
+        if (gamepad1.a) {
+            slide.goDown();
+        }
+        if (gamepad1.b) {
+            slide.stay();
+        }
+        if (gamepad1.x) {
+            slide.hang();
+        }
         if(gamepad2.dpad_down){
             motorPower = arm.setGrab();
             lights.lightStates = Lights.LightStates.CLAWDOWN;
@@ -101,24 +107,18 @@ public class TeleGoOPAUGHGHGHGHGHHGHGHGH extends OpMode {
             motorPower = arm.setRest();
             lights.lightStates = Lights.LightStates.CLAWUP;
         }
-        if(gamepad2.y){
+        if(gamepad2.left_bumper){
             motorPower = arm.setScore();
             lights.lightStates = Lights.LightStates.SCORE;
         }
-//        if (gamepad2.right_bumper) {
-//            claw.switchPos(runtime);
-//        }
-
-        if (gamepad2.left_bumper) {
-            slideTarget = 0;
-        }
         if (gamepad2.right_bumper) {
-            slideTarget = 1000;
+            claw.switchPos(runtime);
         }
-        // Final things to update after every loop
-        movement.run(gamepad1, motorPower, telem);
 
-        slidePID.run(slideTarget);
+        // Final things to update after every loop
+        movement.run(gamepad1, motorPower, telem, false);
+
+//        slidePID.run(slideTarget);
         telem.addData("Slide Target", slideTarget);
         telem.addData("Slide Pos", slidePID.getCurrentPos());
         telem.addData("Slide Power", slidePID.power);

@@ -13,6 +13,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import java.lang.Math;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.drive.DriveConstants;
+import org.firstinspires.ftc.teamcode.code.constants.hardwareConsts.Drone;
 
 @TeleOp
 public class MalciousTeleOP extends LinearOpMode {
@@ -91,6 +93,8 @@ public class MalciousTeleOP extends LinearOpMode {
         Servo arm = hardwareMap.get(Servo.class, "idk1");
         Servo joint = hardwareMap.get(Servo.class, "idk2");
         Servo claw = hardwareMap.get(Servo.class, "idk3");
+
+        Drone drone = new Drone(hardwareMap);
 //        ServoEx arm;
 //        ServoEx joint;
 
@@ -279,6 +283,9 @@ public class MalciousTeleOP extends LinearOpMode {
             }
             if (gamepad1.dpad_right) {
                 popper.setPosition(0.6);
+            }
+            if (gamepad1.dpad_down) {
+                drone.shoot();
             }
 
             telemetry.update();

@@ -113,7 +113,7 @@ public class OnePlayerTele extends OpMode {
         }
 
         // Final Updates
-        movement.run(gamepad1, motorPower, telem);
+        movement.run(gamepad1, motorPower, telem, false);
         lights.setLights();
     }
 }
