@@ -87,16 +87,16 @@ public class TeleGoOPAUGHGHGHGHGHHGHGHGH extends OpMode {
 
 
         // Player 2
-        if (gamepad1.y) {
+        if (gamepad2.y) {
             slide.goUp();
         }
-        if (gamepad1.a) {
+        if (gamepad2.a) {
             slide.goDown();
         }
-        if (gamepad1.b) {
+        if (gamepad2.b) {
             slide.stay();
         }
-        if (gamepad1.x) {
+        if (gamepad2.x) {
             slide.hang();
         }
         if(gamepad2.dpad_down){
@@ -116,7 +116,7 @@ public class TeleGoOPAUGHGHGHGHGHHGHGHGH extends OpMode {
         }
 
         // Final things to update after every loop
-        movement.run(gamepad1, motorPower, telem, false);
+        movement.run(gamepad1, motorPower, telem, true);
 
 //        slidePID.run(slideTarget);
         telem.addData("Slide Target", slideTarget);

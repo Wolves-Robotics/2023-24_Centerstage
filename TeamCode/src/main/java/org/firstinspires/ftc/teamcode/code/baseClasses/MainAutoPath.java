@@ -15,8 +15,6 @@ import java.util.Objects;
 
 abstract public class MainAutoPath {
     private MultipleTelemetry telemetry;
-    protected double centerLine, leftLine, rightLine;
-    protected double color;
 
     private AutoConsts autoConsts;
 
@@ -28,38 +26,23 @@ abstract public class MainAutoPath {
 
     protected TrajectorySequence purplePath, purpleToBackdropPath, yellowPlacePath, gotoWhitePath,  parkPath;
 
-    public void initVarsAndCamera(HardwareMap _hardwareMap, SampleMecanumDrive drive, Telemetry telemetry, String color, String startDis, String endDis) {
-        autoConsts = new AutoConsts(_hardwareMap);
+    abstract protected Pose2d setStartPos();
 
-//         generate lines that the purple placement will depend upon
-//         changes whether the bot starts close or far side
-        centerLine = 14;
-        leftLine = 8.;
-        rightLine = 15.5;
-        if (Objects.equals(startDis, "far")) {
-            centerLine = -37.5;
-            leftLine = -39.;
-            rightLine = -31.;
-        }
-        if (color == "red")
-        {
-            this.color = 1.;
-        } else {
-            this.color = -1.;
-        }
-        // sets other variables used in path making
-        this.drive = drive;
-        this.startDis = startDis;
-        this.endDis = endDis;
-        this.telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+    public void initVarsAndCamera(HardwareMap _hardwareMap, SampleMecanumDrive _drive, Telemetry _telemetry, String _color, String _startDis, String _endDis) {
+        autoConsts = new AutoConsts(_hardwareMap);
+        telemetry = new MultipleTelemetry(_telemetry, FtcDashboard.getInstance().getTelemetry());
+
+        drive = _drive;
+        startDis = _startDis;
+        endDis = _endDis;
 
         // start position of the bot on roadrunner's coordinate place
-        startPos = new Pose2d(centerLine, -61 * this.color, Math.toRadians(-90 * this.color));
+        startPos = setStartPos();
         drive.setPoseEstimate(startPos);
 
         // sets the processor to detect red or blue, depending on what the color is
         autoConsts.setProcessor();
-        autoConsts.processor.setColor(color);
+        autoConsts.processor.setColor(_color);
 
         // sets the camera with the previously build processor
         autoConsts.setCamera();
@@ -80,6 +63,8 @@ abstract public class MainAutoPath {
     abstract public TrajectorySequence getPurpleToBackdropPath();
 
     abstract public TrajectorySequence getYellowPlacePath();
+
+    abstract public TrajectorySequence getWhitePath();
 
     public TrajectorySequence getParkPath() {
         if (endDis == "close") {

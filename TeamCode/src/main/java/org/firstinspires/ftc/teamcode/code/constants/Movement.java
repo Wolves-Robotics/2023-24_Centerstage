@@ -41,7 +41,7 @@ public class Movement {
     }
 
     public final void landonRobotCentric(Gamepad gamepad, double motorPower, MultipleTelemetry telem) {
-        double x = gamepad.left_trigger + gamepad.right_trigger;
+        double x = -gamepad.left_trigger + gamepad.right_trigger;
         robotCentricDrive(gamepad, motorPower, telem, x);
     }
 

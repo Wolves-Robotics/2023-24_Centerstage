@@ -1,5 +1,9 @@
 package org.firstinspires.ftc.teamcode.code.autonomous.pathing;
 
+import org.firstinspires.ftc.teamcode.code.autonomous.pathing.finalPaths.BlueClosePath;
+import org.firstinspires.ftc.teamcode.code.autonomous.pathing.finalPaths.BlueFarPath;
+import org.firstinspires.ftc.teamcode.code.autonomous.pathing.finalPaths.RedClosePath;
+import org.firstinspires.ftc.teamcode.code.autonomous.pathing.finalPaths.RedFarPath;
 import org.firstinspires.ftc.teamcode.code.baseClasses.MainAutoPath;
 
 public class PathingWrapper {
