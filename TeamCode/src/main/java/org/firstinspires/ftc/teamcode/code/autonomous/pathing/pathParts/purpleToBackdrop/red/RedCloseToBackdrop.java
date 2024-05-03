@@ -1,8 +1,8 @@
-package org.firstinspires.ftc.teamcode.code.autonomous.pathing.pathParts.purpleToBackdrop;
+package org.firstinspires.ftc.teamcode.code.autonomous.pathing.pathParts.purpleToBackdrop.red;
 
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 
-import org.firstinspires.ftc.teamcode.code.autonomous.pathing.pathParts.purple.RedClosePurple;
+import org.firstinspires.ftc.teamcode.code.autonomous.pathing.pathParts.purple.red.RedClosePurple;
 import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.trajectorysequence.TrajectorySequence;
 
 public abstract class RedCloseToBackdrop extends RedClosePurple {
@@ -11,7 +11,7 @@ public abstract class RedCloseToBackdrop extends RedClosePurple {
         purpleToBackdropPath = drive.trajectorySequenceBuilder(endPos)
                 .lineTo(new Vector2d(50, -41))
                 .build();
-        endPos = purplePath.end();
+        endPos = purpleToBackdropPath.end();
 
         return purpleToBackdropPath;
     }

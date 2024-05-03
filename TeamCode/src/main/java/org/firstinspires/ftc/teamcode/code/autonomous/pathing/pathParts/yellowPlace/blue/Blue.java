@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.code.autonomous.pathing.pathParts.yellowPlace;
+package org.firstinspires.ftc.teamcode.code.autonomous.pathing.pathParts.yellowPlace.blue;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;

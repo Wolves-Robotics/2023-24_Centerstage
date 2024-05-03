@@ -1,12 +1,12 @@
-package org.firstinspires.ftc.teamcode.code.autonomous.pathing.pathParts.purple;
+package org.firstinspires.ftc.teamcode.code.autonomous.pathing.pathParts.purple.blue;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 
+import org.firstinspires.ftc.teamcode.code.autonomous.pathing.pathParts.pathStart.BlueStart;
 import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.trajectorysequence.TrajectorySequence;
-import org.firstinspires.ftc.teamcode.code.baseClasses.MainAutoPath;
 
-public abstract class BlueFarPurple extends MainAutoPath {
+public abstract class BlueFarPurple extends BlueStart {
     @Override
     protected Pose2d setStartPos() {
         return new Pose2d(-37.5, 61, Math.toRadians(90));

@@ -66,19 +66,7 @@ abstract public class MainAutoPath {
 
     abstract public TrajectorySequence getWhitePath();
 
-    public TrajectorySequence getParkPath() {
-        if (endDis == "close") {
-            parkPath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(50, 60))
-                    .build();
-        } else {
-            parkPath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(50, 10))
-                    .build();
-        }
-
-        return parkPath;
-    }
+    abstract public TrajectorySequence getParkPath();
 
     public SampleMecanumDrive getDrive() {return drive;}
 }

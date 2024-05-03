@@ -16,17 +16,18 @@ public class meepmeep {
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 12.78)
                 .followTrajectorySequence(drive ->
-                        drive.trajectorySequenceBuilder(new Pose2d(14, -61, Math.toRadians(-90)))
-                                .lineTo(new Vector2d(14, -40))
-                                .lineTo(new Vector2d(13, -30))
-                                .lineTo(new Vector2d(14, -42))
+                        drive.trajectorySequenceBuilder(new Pose2d(-37.5, -61, Math.toRadians(-90)))
+                                .lineTo(new Vector2d(-46.5, -33))
+                                .lineTo(new Vector2d(-46.5, -45))
+                                .lineTo(new Vector2d(-37.5, -42))
                                 .turn(Math.toRadians(-90))
 
+                                .lineTo(new Vector2d(-35, -7))
+                                .lineTo(new Vector2d(38, -7))
+                                .lineTo(new Vector2d(46, -35))
                                 .lineTo(new Vector2d(50, -41))
 
-                                .lineTo(new Vector2d(53, -39))
-
-
+                                .lineTo(new Vector2d(53, -33))
                                 .build()
                 );
 

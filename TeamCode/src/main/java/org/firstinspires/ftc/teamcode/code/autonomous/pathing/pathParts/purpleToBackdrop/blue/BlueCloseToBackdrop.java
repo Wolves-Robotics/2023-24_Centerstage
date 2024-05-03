@@ -1,8 +1,8 @@
-package org.firstinspires.ftc.teamcode.code.autonomous.pathing.pathParts.purpleToBackdrop;
+package org.firstinspires.ftc.teamcode.code.autonomous.pathing.pathParts.purpleToBackdrop.blue;
 
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 
-import org.firstinspires.ftc.teamcode.code.autonomous.pathing.pathParts.purple.BlueClosePurple;
+import org.firstinspires.ftc.teamcode.code.autonomous.pathing.pathParts.purple.blue.BlueClosePurple;
 import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.trajectorysequence.TrajectorySequence;
 
 public abstract class BlueCloseToBackdrop extends BlueClosePurple {

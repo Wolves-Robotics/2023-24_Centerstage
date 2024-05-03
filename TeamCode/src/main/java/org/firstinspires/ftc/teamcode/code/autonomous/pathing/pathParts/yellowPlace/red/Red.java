@@ -1,27 +1,27 @@
-package org.firstinspires.ftc.teamcode.code.autonomous.pathing.pathParts.yellowPlace;
+package org.firstinspires.ftc.teamcode.code.autonomous.pathing.pathParts.yellowPlace.red;
 
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 
-import org.firstinspires.ftc.teamcode.code.autonomous.pathing.pathParts.purpleToBackdrop.BlueCloseToBackdrop;
+import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.trajectorysequence.TrajectorySequence;
 
-public abstract class BlueCloseYellow extends BlueCloseToBackdrop {
-    @Override
-    public TrajectorySequence getYellowPlacePath() {
+public class Red {
+    public static TrajectorySequence getYellowPlacePath(SampleMecanumDrive drive, String position, Pose2d endPos) {
+        TrajectorySequence yellowPlacePath;
         if (position == "left") {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(53, 34))
+                    .lineTo(new Vector2d(53, -33))
                     .build();
         } else if (position == "mid") {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(53, 26))
+                    .lineTo(new Vector2d(53, -39))
                     .build();
         } else {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(53, 21))
+                    .lineTo(new Vector2d(53, -49))
                     .build();
         }
-        endPos = yellowPlacePath.end();
 
         return yellowPlacePath;
     }
