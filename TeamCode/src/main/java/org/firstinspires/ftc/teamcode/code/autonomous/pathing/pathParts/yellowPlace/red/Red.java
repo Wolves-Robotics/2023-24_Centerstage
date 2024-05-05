@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.drive.SampleMec
 import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.trajectorysequence.TrajectorySequence;
 
 public class Red {
-    public static TrajectorySequence getYellowPlacePath(SampleMecanumDrive drive, String position, Pose2d endPos) {
+    public static TrajectorySequence getYellowPlacePathC(SampleMecanumDrive drive, String position, Pose2d endPos) {
         TrajectorySequence yellowPlacePath;
         if (position == "left") {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
@@ -20,6 +20,25 @@ public class Red {
         } else {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
                     .lineTo(new Vector2d(53, -49))
+                    .build();
+        }
+
+        return yellowPlacePath;
+    }
+
+    public static TrajectorySequence getYellowPlacePathF(SampleMecanumDrive drive, String position, Pose2d endPos) {
+        TrajectorySequence yellowPlacePath;
+        if (position == "left") {
+            yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
+                    .lineTo(new Vector2d(53, -31))
+                    .build();
+        } else if (position == "mid") {
+            yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
+                    .lineTo(new Vector2d(53, -37))
+                    .build();
+        } else {
+            yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
+                    .lineTo(new Vector2d(53, -47))
                     .build();
         }
 

@@ -11,14 +11,14 @@ public abstract class BlueThroughDoor extends BlueFarPurple {
         if (position == "mid") {
             purpleToBackdropPath = drive.trajectorySequenceBuilder(endPos)
                     .lineTo(new Vector2d(-53, 42))
-                    .lineTo(new Vector2d(-53, 2))
-                    .lineTo(new Vector2d(38, 2))
+                    .lineTo(new Vector2d(-53, 7))
+                    .lineTo(new Vector2d(38, 7))
                     .lineTo(new Vector2d(50, 41))
                     .build();
         } else {
             purpleToBackdropPath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(-35, 2))
-                    .lineTo(new Vector2d(38, 2))
+                    .lineTo(new Vector2d(-35, 7))
+                    .lineTo(new Vector2d(38, 7))
                     .lineTo(new Vector2d(50, 41))
                     .build();
         }

@@ -26,7 +26,7 @@ public class Claw {
     }
 
     public final void switchPos(ElapsedTime runtime) {
-        if (runtime.seconds() - clawChangeTime >= 0.2) {
+        if (runtime.seconds() - clawChangeTime >= 0.3) {
             clawOpen = !clawOpen;
             if (clawOpen) {
                 setOpen();

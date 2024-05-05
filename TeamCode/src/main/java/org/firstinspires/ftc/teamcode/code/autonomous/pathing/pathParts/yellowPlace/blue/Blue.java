@@ -7,19 +7,38 @@ import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.drive.SampleMec
 import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.trajectorysequence.TrajectorySequence;
 
 public class Blue {
-    public static TrajectorySequence getYellowPlacePath(SampleMecanumDrive drive, String position, Pose2d endPos) {
+    public static TrajectorySequence getYellowPlacePathC(SampleMecanumDrive drive, String position, Pose2d endPos) {
         TrajectorySequence yellowPlacePath;
         if (position == "left") {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(53, 34))
+                    .lineTo(new Vector2d(54, 32))
                     .build();
         } else if (position == "mid") {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(53, 26))
+                    .lineTo(new Vector2d(54, 26))
                     .build();
         } else {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(53, 21))
+                    .lineTo(new Vector2d(54, 17))
+                    .build();
+        }
+
+        return yellowPlacePath;
+    }
+
+    public static TrajectorySequence getYellowPlacePathF(SampleMecanumDrive drive, String position, Pose2d endPos) {
+        TrajectorySequence yellowPlacePath;
+        if (position == "left") {
+            yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
+                    .lineTo(new Vector2d(54, 30))
+                    .build();
+        } else if (position == "mid") {
+            yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
+                    .lineTo(new Vector2d(54, 24))
+                    .build();
+        } else {
+            yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
+                    .lineTo(new Vector2d(54, 15))
                     .build();
         }
 

@@ -21,7 +21,7 @@ public abstract class BlueClosePurple extends BlueStart {
                     .lineTo(new Vector2d(22.5, 33))
                     .lineTo(new Vector2d(22.5, 45))
                     .lineTo(new Vector2d(14, 42))
-                    .turn(Math.toRadians(-90))
+                    .turn(Math.toRadians(90))
                     .build();
         } else if (position == "mid") {
             purplePath = drive.trajectorySequenceBuilder(startPos)

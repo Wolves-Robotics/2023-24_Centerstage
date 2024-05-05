@@ -19,7 +19,6 @@ public abstract class RedThroughDoor extends RedFarPurple {
             purpleToBackdropPath = drive.trajectorySequenceBuilder(endPos)
                     .lineTo(new Vector2d(-35, -7))
                     .lineTo(new Vector2d(38, -7))
-                    .lineTo(new Vector2d(46, -35))
                     .lineTo(new Vector2d(50, -41))
                     .build();
         }

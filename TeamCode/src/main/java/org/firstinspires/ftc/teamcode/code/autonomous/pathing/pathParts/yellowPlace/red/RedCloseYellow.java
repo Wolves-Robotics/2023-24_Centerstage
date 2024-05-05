@@ -6,7 +6,7 @@ import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.trajectoryseque
 public abstract class RedCloseYellow extends RedCloseToBackdrop {
     @Override
     public TrajectorySequence getYellowPlacePath() {
-        yellowPlacePath = Red.getYellowPlacePath(drive, position, endPos);
+        yellowPlacePath = Red.getYellowPlacePathC(drive, position, endPos);
         endPos = yellowPlacePath.end();
 
         return yellowPlacePath;

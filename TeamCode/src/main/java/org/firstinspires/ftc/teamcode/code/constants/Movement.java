@@ -11,7 +11,7 @@ public class Movement {
     private static Consts consts;
 
     private double driveSwitchTime = 0.;
-    private boolean robotCentricBool = false;
+    private boolean robotCentricBool = true;
 
     public Movement(HardwareMap _hardwareMap) {
         consts = new Consts(_hardwareMap);
@@ -72,7 +72,7 @@ public class Movement {
     }
 
     public final void changeMode(ElapsedTime runtime) {
-        if (runtime.seconds() - driveSwitchTime >= 0.2) {
+        if (runtime.seconds() - driveSwitchTime >= 0.3) {
             robotCentricBool = !robotCentricBool;
             driveSwitchTime = runtime.seconds();
         }
