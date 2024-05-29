@@ -5,7 +5,6 @@ import com.acmerobotics.roadrunner.geometry.Vector2d;
 
 import org.firstinspires.ftc.teamcode.code.autonomous.pathing.pathParts.pathStart.RedStart;
 import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.trajectorysequence.TrajectorySequence;
-import org.firstinspires.ftc.teamcode.code.baseClasses.MainAutoPath;
 
 public abstract class RedFarPurple extends RedStart {
     @Override

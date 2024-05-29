@@ -4,7 +4,6 @@ import org.firstinspires.ftc.teamcode.code.autonomous.pathing.finalPaths.BlueClo
 import org.firstinspires.ftc.teamcode.code.autonomous.pathing.finalPaths.BlueFarPath;
 import org.firstinspires.ftc.teamcode.code.autonomous.pathing.finalPaths.RedClosePath;
 import org.firstinspires.ftc.teamcode.code.autonomous.pathing.finalPaths.RedFarPath;
-import org.firstinspires.ftc.teamcode.code.baseClasses.MainAutoPath;
 
 public class PathingWrapper {
     static MainAutoPath path;

@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.code.testing;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.code.baseClasses.MainAutonomous;
+import org.firstinspires.ftc.teamcode.code.autonomous.code.MainAutonomous;
 
 @Autonomous
 public class childTest extends MainAutonomous {

@@ -19,7 +19,7 @@ public class AutoConsts {
         hardwareMap = _hardwareMap;
     }
 
-    public void setProcessor() {
+    public void setProcessor(boolean testCamera) {
         processor = new MainCameraPipeline();
     }
 

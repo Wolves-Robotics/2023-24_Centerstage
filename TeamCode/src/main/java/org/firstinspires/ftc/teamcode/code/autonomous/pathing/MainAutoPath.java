@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.code.baseClasses;
+package org.firstinspires.ftc.teamcode.code.autonomous.pathing;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
@@ -28,7 +28,7 @@ abstract public class MainAutoPath {
 
     abstract protected Pose2d setStartPos();
 
-    public void initVarsAndCamera(HardwareMap _hardwareMap, SampleMecanumDrive _drive, Telemetry _telemetry, String _color, String _startDis, String _endDis) {
+    public void initVarsAndCamera(HardwareMap _hardwareMap, SampleMecanumDrive _drive, Telemetry _telemetry, String _color, String _startDis, String _endDis, boolean testCamera) {
         autoConsts = new AutoConsts(_hardwareMap);
         telemetry = new MultipleTelemetry(_telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -41,7 +41,7 @@ abstract public class MainAutoPath {
         drive.setPoseEstimate(startPos);
 
         // sets the processor to detect red or blue, depending on what the color is
-        autoConsts.setProcessor();
+        autoConsts.setProcessor(testCamera);
         autoConsts.processor.setColor(_color);
 
         // sets the camera with the previously build processor

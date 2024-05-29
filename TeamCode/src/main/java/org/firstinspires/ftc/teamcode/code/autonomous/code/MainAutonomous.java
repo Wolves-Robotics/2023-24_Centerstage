@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.code.baseClasses;
+package org.firstinspires.ftc.teamcode.code.autonomous.code;
 
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.code.autonomous.pathing.PathingWrapper;
 import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.trajectorysequence.TrajectorySequence;
+import org.firstinspires.ftc.teamcode.code.autonomous.pathing.MainAutoPath;
 import org.firstinspires.ftc.teamcode.code.constants.AutoConsts;
 import org.firstinspires.ftc.teamcode.code.constants.Consts;
 
@@ -29,8 +30,11 @@ public abstract class MainAutonomous extends OpMode
 
     MainAutoPath pathingTool;
 
+    private final boolean testCamera = true;
+
     public abstract void setVariables();
 
+    @Override
     public void init() {
         setVariables();
 
@@ -45,12 +49,19 @@ public abstract class MainAutonomous extends OpMode
 
         pathingTool = PathingWrapper.getPath(color, startDis);
 
-        pathingTool.initVarsAndCamera(hardwareMap, drive, telemetry, color, startDis, endDis);
+        pathingTool.initVarsAndCamera(hardwareMap, drive, telemetry, color, startDis, endDis, testCamera);
 
         consts.lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.BLACK);
     }
 
+    @Override
+    public void init_loop() {
+        if (gamepad1.a && testCamera) {
 
+        }
+    }
+
+    @Override
     public void start() {
         runtime.reset();
         purplePath = pathingTool.getPurplePath();

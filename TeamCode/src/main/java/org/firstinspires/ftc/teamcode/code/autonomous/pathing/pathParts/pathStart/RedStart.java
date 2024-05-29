@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.code.autonomous.pathing.pathParts.pathSta
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 
 import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.trajectorysequence.TrajectorySequence;
-import org.firstinspires.ftc.teamcode.code.baseClasses.MainAutoPath;
+import org.firstinspires.ftc.teamcode.code.autonomous.pathing.MainAutoPath;
 
 public abstract class RedStart extends MainAutoPath {
     @Override
