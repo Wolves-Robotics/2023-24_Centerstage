@@ -27,7 +27,7 @@ abstract public class BaseCameraPipeline implements VisionProcessor, CameraStrea
 
     private String outStr;
 
-    public static double averageReference = 0.3;
+    public static double averageReference = 0.35;
 
     public static int m1x=260, m1y=400, m2x=350, m2y=330;
     public static int r1x=260, r1y=100, r2x=370, r2y=10;
@@ -69,6 +69,7 @@ abstract public class BaseCameraPipeline implements VisionProcessor, CameraStrea
         }else{
             outStr = "left";
         }
+//        outStr = "right";
     }
 
     private void bitmapFuckery(Mat mat) {

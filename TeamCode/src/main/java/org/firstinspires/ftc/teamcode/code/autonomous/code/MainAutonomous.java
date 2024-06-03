@@ -56,9 +56,9 @@ public abstract class MainAutonomous extends OpMode
 
     @Override
     public void init_loop() {
-        if (gamepad1.a) {
-            pathingTool.setReferenceFrame();
-        }
+//        if (gamepad1.a) {
+//            pathingTool.setReferenceFrame();
+//        }
     }
 
     @Override
@@ -80,8 +80,8 @@ public abstract class MainAutonomous extends OpMode
         {
             case PLACE_PURPLE:
                 if (!drive.isBusy()) {
-                    autoEnums.state = AutoConsts.State.PLACE_YELLOW;
-                    drive.followTrajectorySequenceAsync(purpleToBackdropPath);
+                    autoEnums.state = AutoConsts.State.Idle;
+//                    drive.followTrajectorySequenceAsync(purpleToBackdropPath);
                 }
                 break;
             case PLACE_YELLOW:

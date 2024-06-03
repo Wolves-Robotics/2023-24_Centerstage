@@ -19,13 +19,13 @@ import java.util.Objects;
 
 @Config
 public class MainCameraPipeline extends BaseCameraPipeline {
-    public static double minimumValue = 100;
+    public static double minimumValue = 50;
     public static double maximumValue = 255;
     public static double minimumBlueHue = 100;
-    public static double maximumBlueHue = 115;
+    public static double maximumBlueHue = 190;
     public static double minimumRedLowHue = 0;
     public static double maximumRedLowHue = 25;
-    public static double minimumRedHighHue = 160;
+    public static double minimumRedHighHue = 140;
     public static double maximumRedHighHue = 255;
 
     Mat mat = new Mat();

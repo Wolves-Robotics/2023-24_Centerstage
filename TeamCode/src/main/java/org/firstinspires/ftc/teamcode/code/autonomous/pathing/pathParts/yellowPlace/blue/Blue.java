@@ -12,15 +12,15 @@ public class Blue {
         TrajectorySequence yellowPlacePath;
         if (position == "left") {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(54, 32 - MainAutoPath.buckdayMovement))
+                    .lineTo(new Vector2d(54, 32 + MainAutoPath.buckdayMovement))
                     .build();
         } else if (position == "mid") {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(54, 26 - MainAutoPath.buckdayMovement))
+                    .lineTo(new Vector2d(54, 26 + MainAutoPath.buckdayMovement))
                     .build();
         } else {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(54, 17 - MainAutoPath.buckdayMovement))
+                    .lineTo(new Vector2d(54, 17 + MainAutoPath.buckdayMovement))
                     .build();
         }
 
@@ -31,15 +31,15 @@ public class Blue {
         TrajectorySequence yellowPlacePath;
         if (position == "left") {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(54, 30 - MainAutoPath.buckdayMovement))
+                    .lineTo(new Vector2d(54, 30 + MainAutoPath.buckdayMovement))
                     .build();
         } else if (position == "mid") {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(54, 24 - MainAutoPath.buckdayMovement))
+                    .lineTo(new Vector2d(54, 24 + MainAutoPath.buckdayMovement))
                     .build();
         } else {
             yellowPlacePath = drive.trajectorySequenceBuilder(endPos)
-                    .lineTo(new Vector2d(54, 15 - MainAutoPath.buckdayMovement))
+                    .lineTo(new Vector2d(54, 15 + MainAutoPath.buckdayMovement))
                     .build();
         }
 

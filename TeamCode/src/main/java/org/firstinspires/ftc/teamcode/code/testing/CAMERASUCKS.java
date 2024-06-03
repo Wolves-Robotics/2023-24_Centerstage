@@ -34,9 +34,9 @@ public class CAMERASUCKS extends OpMode {
 
     @Override
     public void init_loop() {
-        if (gamepad1.a) {
-            autoConsts.processor.setReferenceFrame();
-        }
+//        if (gamepad1.a) {
+//            autoConsts.processor.setReferenceFrame();
+//        }
         telem.addData("Prop position", autoConsts.processor.getPropPosition());
         telem.update();
     }

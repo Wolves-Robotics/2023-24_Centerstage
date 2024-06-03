@@ -11,7 +11,7 @@ public class Movement {
     private static Consts consts;
 
     private double driveSwitchTime = 0.;
-    private boolean robotCentricBool = true;
+    private boolean robotCentricBool = false;
 
     public Movement(HardwareMap _hardwareMap) {
         consts = new Consts(_hardwareMap);
