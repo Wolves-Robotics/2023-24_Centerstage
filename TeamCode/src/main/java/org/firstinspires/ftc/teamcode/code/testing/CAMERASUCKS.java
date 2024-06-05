@@ -6,10 +6,8 @@ import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.checkerframework.checker.units.qual.C;
 import org.firstinspires.ftc.teamcode.code.constants.AutoConsts;
 import org.firstinspires.ftc.teamcode.code.constants.Consts;
-import org.firstinspires.ftc.teamcode.code.constants.hardwareConsts.Lights;
 
 @TeleOp
 public class CAMERASUCKS extends OpMode {
@@ -34,9 +32,13 @@ public class CAMERASUCKS extends OpMode {
 
     @Override
     public void init_loop() {
-//        if (gamepad1.a) {
-//            autoConsts.processor.setReferenceFrame();
-//        }
+        if (gamepad1.a) {
+            autoConsts.processor.setReferenceFrame();
+        }
+        telem.addData("MeanMid", autoConsts.processor.meanMid);
+        telem.addData("MeanRight", autoConsts.processor.meanRight);
+        telem.addData("StaticMid", autoConsts.processor.staticMid);
+        telem.addData("StaticRight", autoConsts.processor.staticRight);
         telem.addData("Prop position", autoConsts.processor.getPropPosition());
         telem.update();
     }

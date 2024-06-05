@@ -56,9 +56,9 @@ public abstract class MainAutonomous extends OpMode
 
     @Override
     public void init_loop() {
-//        if (gamepad1.a) {
-//            pathingTool.setReferenceFrame();
-//        }
+        if (gamepad1.a) {
+            pathingTool.setReferenceFrame();
+        }
     }
 
     @Override

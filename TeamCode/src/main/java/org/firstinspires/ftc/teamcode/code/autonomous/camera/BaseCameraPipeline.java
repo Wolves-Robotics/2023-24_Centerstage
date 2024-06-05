@@ -17,6 +17,8 @@ import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Rect;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -29,30 +31,18 @@ abstract public class BaseCameraPipeline implements VisionProcessor, CameraStrea
 
     public static double averageReference = 0.35;
 
-    public static int m1x=260, m1y=400, m2x=350, m2y=330;
-    public static int r1x=260, r1y=100, r2x=370, r2y=10;
+    protected Rect MID_RECTANGLE;
 
-    Rect MID_RECTANGLE = new Rect(
-            new Point(260, 400),
-            new Point(350, 330)
-    );
-
-    Rect RIGHT_RECTANGLE = new Rect(
-            new Point(260, 100),
-            new Point(370, 10)
-    );
+    protected Rect RIGHT_RECTANGLE;
 
     abstract protected Mat doShit(Mat frame);
 
-    private void setRects() {
-        MID_RECTANGLE = new Rect(
-                new Point(m1x, m1y),
-                new Point(m2x, m2y)
-        );
-        RIGHT_RECTANGLE = new Rect(
-                new Point(r1x, r1y),
-                new Point(r2x, r2y)
-        );
+    private Mat setRects(Mat mat) {
+
+        Imgproc.rectangle(mat, MID_RECTANGLE, new Scalar(255, 0, 0));
+        Imgproc.rectangle(mat, RIGHT_RECTANGLE, new Scalar(255, 0, 0));
+
+        return mat;
     }
 
     private void getOutput(Mat mat) {
@@ -69,7 +59,6 @@ abstract public class BaseCameraPipeline implements VisionProcessor, CameraStrea
         }else{
             outStr = "left";
         }
-//        outStr = "right";
     }
 
     private void bitmapFuckery(Mat mat) {
@@ -90,9 +79,9 @@ abstract public class BaseCameraPipeline implements VisionProcessor, CameraStrea
 
     @Override
     public Object processFrame(Mat frame, long l) {
-        setRects();
-
         Mat mat = doShit(frame);
+
+        mat = setRects(mat);
 
         getOutput(mat);
 

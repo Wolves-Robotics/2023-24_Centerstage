@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.code.autonomous.camera.MainCameraPipeline;
+import org.firstinspires.ftc.teamcode.code.autonomous.camera.PleaseworkPipeline;
 import org.firstinspires.ftc.teamcode.code.autonomous.camera.testPipeline;
 import org.firstinspires.ftc.teamcode.code.autonomous.pathing.MainAutoPath;
 import org.firstinspires.ftc.vision.VisionPortal;
@@ -15,14 +16,14 @@ public class AutoConsts {
     private static HardwareMap hardwareMap;
     private static VisionPortal portal;
 
-    public MainCameraPipeline processor;
+    public PleaseworkPipeline processor;
 
     public AutoConsts(HardwareMap _hardwareMap) {
         hardwareMap = _hardwareMap;
     }
 
     public void setProcessor() {
-        processor = new MainCameraPipeline();
+        processor = new PleaseworkPipeline();
     }
 
     public void setCamera() {

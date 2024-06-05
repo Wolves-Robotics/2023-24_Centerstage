@@ -20,7 +20,7 @@ abstract public class MainAutoPath {
 
     private MultipleTelemetry telemetry;
 
-    private AutoConsts autoConsts;
+    public AutoConsts autoConsts;
 
     protected String startDis, endDis, position;
 
@@ -32,9 +32,9 @@ abstract public class MainAutoPath {
 
     abstract protected Pose2d setStartPos();
 
-//    public void setReferenceFrame() {
-//        autoConsts.processor.setReferenceFrame();
-//    }
+    public void setReferenceFrame() {
+        autoConsts.processor.setReferenceFrame();
+    }
 
     public void initVarsAndCamera(HardwareMap _hardwareMap, SampleMecanumDrive _drive, Telemetry _telemetry, String _color, String _startDis, String _endDis) {
         autoConsts = new AutoConsts(_hardwareMap);
@@ -50,7 +50,7 @@ abstract public class MainAutoPath {
 
         // sets the processor to detect red or blue, depending on what the color is
         autoConsts.setProcessor();
-        autoConsts.processor.setColor(_color);
+//        autoConsts.processor.setColor(_color);
 
         // sets the camera with the previously build processor
         autoConsts.setCamera();
