@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.code.autonomous.code;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -30,8 +31,6 @@ public abstract class MainAutonomous extends OpMode
 
     MainAutoPath pathingTool;
 
-    private final boolean testCamera = true;
-
     public abstract void setVariables();
 
     @Override
@@ -49,15 +48,16 @@ public abstract class MainAutonomous extends OpMode
 
         pathingTool = PathingWrapper.getPath(color, startDis);
 
-        pathingTool.initVarsAndCamera(hardwareMap, drive, telemetry, color, startDis, endDis, testCamera);
+        pathingTool.initVarsAndCamera(hardwareMap, drive, telemetry, color, startDis, endDis);
 
         consts.lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.BLACK);
+
     }
 
     @Override
     public void init_loop() {
-        if (gamepad1.a && testCamera) {
-
+        if (gamepad1.a) {
+            pathingTool.setReferenceFrame();
         }
     }
 
@@ -80,8 +80,8 @@ public abstract class MainAutonomous extends OpMode
         {
             case PLACE_PURPLE:
                 if (!drive.isBusy()) {
-                    autoEnums.state = AutoConsts.State.PLACE_YELLOW;
-                    drive.followTrajectorySequenceAsync(purpleToBackdropPath);
+                    autoEnums.state = AutoConsts.State.Idle;
+//                    drive.followTrajectorySequenceAsync(purpleToBackdropPath);
                 }
                 break;
             case PLACE_YELLOW:

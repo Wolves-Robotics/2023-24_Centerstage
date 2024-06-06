@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.code.autonomous.pathing;
 
 import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
@@ -13,10 +14,13 @@ import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.trajectoryseque
 
 import java.util.Objects;
 
+@Config
 abstract public class MainAutoPath {
+    public static double buckdayMovement = 12d;
+
     private MultipleTelemetry telemetry;
 
-    private AutoConsts autoConsts;
+    public AutoConsts autoConsts;
 
     protected String startDis, endDis, position;
 
@@ -28,7 +32,11 @@ abstract public class MainAutoPath {
 
     abstract protected Pose2d setStartPos();
 
-    public void initVarsAndCamera(HardwareMap _hardwareMap, SampleMecanumDrive _drive, Telemetry _telemetry, String _color, String _startDis, String _endDis, boolean testCamera) {
+    public void setReferenceFrame() {
+        autoConsts.processor.setReferenceFrame();
+    }
+
+    public void initVarsAndCamera(HardwareMap _hardwareMap, SampleMecanumDrive _drive, Telemetry _telemetry, String _color, String _startDis, String _endDis) {
         autoConsts = new AutoConsts(_hardwareMap);
         telemetry = new MultipleTelemetry(_telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -41,11 +49,13 @@ abstract public class MainAutoPath {
         drive.setPoseEstimate(startPos);
 
         // sets the processor to detect red or blue, depending on what the color is
-        autoConsts.setProcessor(testCamera);
-        autoConsts.processor.setColor(_color);
+        autoConsts.setProcessor();
+//        autoConsts.processor.setColor(_color);
 
         // sets the camera with the previously build processor
         autoConsts.setCamera();
+
+        FtcDashboard.getInstance().startCameraStream(autoConsts.processor, 30.);
     }
 
     protected String getTeamElementPos() {
