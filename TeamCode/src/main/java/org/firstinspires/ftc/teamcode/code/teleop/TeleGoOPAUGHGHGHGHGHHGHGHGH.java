@@ -30,7 +30,7 @@ public class TeleGoOPAUGHGHGHGHGHHGHGHGH extends OpMode {
 
     private MultipleTelemetry telem;
 
-    private ElapsedTime runtime;
+    private ElapsedTime runtime, deltaTime;
 
     private double driveSwitchTime = 0.;
     private boolean robotCentricBool = false;
@@ -53,6 +53,7 @@ public class TeleGoOPAUGHGHGHGHGHHGHGHGH extends OpMode {
         drone = new Drone(hardwareMap);
 
         runtime = new ElapsedTime();
+        deltaTime = new ElapsedTime();
         driveSwitchTime = 0;
 
         consts.setInit();
@@ -66,6 +67,7 @@ public class TeleGoOPAUGHGHGHGHGHHGHGHGH extends OpMode {
 
     @Override
     public void loop() {
+        deltaTime.reset();
 
         // Player 1
         if (gamepad1.dpad_left) {
@@ -122,6 +124,7 @@ public class TeleGoOPAUGHGHGHGHGHHGHGHGH extends OpMode {
         telem.addData("Slide Target", slideTarget);
         telem.addData("Slide Pos", slidePID.getCurrentPos());
         telem.addData("Slide Power", slidePID.power);
+        telem.addData("Delta Time", deltaTime.milliseconds());
 
         lights.setLights();
 

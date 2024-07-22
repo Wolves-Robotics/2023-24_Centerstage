@@ -17,14 +17,6 @@ public class Claw {
         lights = new Lights(_hardwareMap);
     }
 
-    public final void setClose() {
-        consts.claw.setPosition(0.6);
-    }
-
-    public final void setOpen() {
-        consts.claw.setPosition(0);
-    }
-
     public final void switchPos(ElapsedTime runtime) {
         if (runtime.seconds() - clawChangeTime >= 0.3) {
             clawOpen = !clawOpen;
@@ -37,5 +29,12 @@ public class Claw {
             }
             clawChangeTime = runtime.seconds();
         }
+    }
+    private void setClose() {
+        consts.claw.setPosition(0.6);
+    }
+
+    private void setOpen() {
+        consts.claw.setPosition(0);
     }
 }

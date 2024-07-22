@@ -8,24 +8,21 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.code.autonomous.pathing.PathingWrapper;
-import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.drive.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.code.autonomous.roadrunner.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.code.autonomous.pathing.MainAutoPath;
 import org.firstinspires.ftc.teamcode.code.constants.AutoConsts;
 import org.firstinspires.ftc.teamcode.code.constants.Consts;
 
 @Disabled
-@Autonomous
-public abstract class MainAutonomous extends OpMode
-{
+@Autonomous(group = "Auto")
+public abstract class MainAutonomous extends OpMode {
     Consts consts;
     AutoConsts.autoEnums autoEnums;
 
     public String startDis, endDis, color;
 
-    SampleMecanumDrive drive;
-
-    TrajectorySequence purplePath, purpleToBackdropPath, yellowPlacePath, parkPath;
+//    SampleMecanumDrive drive;
+//
+//    TrajectorySequence purplePath, purpleToBackdropPath, yellowPlacePath, parkPath;
 
     private ElapsedTime runtime;
 
@@ -44,11 +41,11 @@ public abstract class MainAutonomous extends OpMode
 
         runtime = new ElapsedTime();
 
-        drive = new SampleMecanumDrive(hardwareMap);
-
-        pathingTool = PathingWrapper.getPath(color, startDis);
-
-        pathingTool.initVarsAndCamera(hardwareMap, drive, telemetry, color, startDis, endDis);
+//        drive = new SampleMecanumDrive(hardwareMap);
+//
+//        pathingTool = PathingWrapper.getPath(color, startDis);
+//
+//        pathingTool.initVarsAndCamera(hardwareMap, drive, telemetry, color, startDis, endDis);
 
         consts.lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.BLACK);
 
@@ -64,13 +61,13 @@ public abstract class MainAutonomous extends OpMode
     @Override
     public void start() {
         runtime.reset();
-        purplePath = pathingTool.getPurplePath();
-        purpleToBackdropPath = pathingTool.getPurpleToBackdropPath();
-        yellowPlacePath = pathingTool.getYellowPlacePath();
-        parkPath = pathingTool.getParkPath();
-
-        drive = pathingTool.getDrive();
-        drive.followTrajectorySequenceAsync(purplePath);
+//        purplePath = pathingTool.getPurplePath();
+//        purpleToBackdropPath = pathingTool.getPurpleToBackdropPath();
+//        yellowPlacePath = pathingTool.getYellowPlacePath();
+//        parkPath = pathingTool.getParkPath();
+//
+//        drive = pathingTool.getDrive();
+//        drive.followTrajectorySequenceAsync(purplePath);
     }
 
     @Override
@@ -79,25 +76,25 @@ public abstract class MainAutonomous extends OpMode
         switch(autoEnums.state)
         {
             case PLACE_PURPLE:
-                if (!drive.isBusy()) {
-                    autoEnums.state = AutoConsts.State.Idle;
-//                    drive.followTrajectorySequenceAsync(purpleToBackdropPath);
-                }
+//                if (!drive.isBusy()) {
+//                    autoEnums.state = AutoConsts.State.Idle;
+////                    drive.followTrajectorySequenceAsync(purpleToBackdropPath);
+//                }
                 break;
             case PLACE_YELLOW:
                 switch(autoEnums.yellowState)
                 {
                     case DRIVE:
-                        if (!drive.isBusy()) {
-                            autoEnums.yellowState = AutoConsts.YellowState.POSITION;
-                            drive.followTrajectorySequenceAsync(yellowPlacePath);
-                        }
-                        break;
-                    case POSITION:
-                        if (!drive.isBusy()) {
-                            runtime.reset();
-                            autoEnums.yellowState = AutoConsts.YellowState.PLACE;
-                        }
+//                        if (!drive.isBusy()) {
+//                            autoEnums.yellowState = AutoConsts.YellowState.POSITION;
+//                            drive.followTrajectorySequenceAsync(yellowPlacePath);
+//                        }
+//                        break;
+//                    case POSITION:
+//                        if (!drive.isBusy()) {
+//                            runtime.reset();
+//                            autoEnums.yellowState = AutoConsts.YellowState.PLACE;
+//                        }
                         break;
                     case PLACE:
                         consts.popper.setPosition(0.6);
@@ -110,17 +107,17 @@ public abstract class MainAutonomous extends OpMode
                 break;
             case SCORE:
                 autoEnums.state = AutoConsts.State.PARK;
-                drive.followTrajectorySequenceAsync(parkPath);
+//                drive.followTrajectorySequenceAsync(parkPath);
                 break;
             case PARK:
-                if (!drive.isBusy()) {
-                    autoEnums.state = AutoConsts.State.Idle;
-                }
+//                if (!drive.isBusy()) {
+//                    autoEnums.state = AutoConsts.State.Idle;
+//                }
                 break;
             case Idle:
                 break;
         }
 
-        drive.update();
+//        drive.update();
     }
 }
