@@ -12,6 +12,7 @@ import com.acmerobotics.roadrunner.ftc.FlightRecorder;
 import com.acmerobotics.roadrunner.ftc.OverflowEncoder;
 import com.acmerobotics.roadrunner.ftc.PositionVelocityPair;
 import com.acmerobotics.roadrunner.ftc.RawEncoder;
+import org.firstinspires.ftc.teamcode.bettercode.testing.autonomous.roadrunner1_0.messages.TwoDeadWheelInputsMessage;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
@@ -19,13 +20,12 @@ import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AngularVelocity;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
-import org.firstinspires.ftc.teamcode.bettercode.testing.autonomous.roadrunner1_0.messages.TwoDeadWheelInputsMessage;
 
 @Config
 public final class TwoDeadWheelLocalizer implements Localizer {
     public static class Params {
-        public double parYTicks = -223.14440817484936; // y position of the parallel encoder (in tick units)
-        public double perpXTicks = -827.4454227391591; // x position of the perpendicular encoder (in tick units)
+        public double parYTicks = -200.08713518999173; // y position of the parallel encoder (in tick units)
+        public double perpXTicks =  -833.7258077129691; // x position of the perpendicular encoder (in tick units)
     }
 
     public static Params PARAMS = new Params();

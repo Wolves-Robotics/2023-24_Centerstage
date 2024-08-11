@@ -86,13 +86,15 @@ public class RobotHardware0 extends Thread {
         setHardwareMaps();
 
         setImu();
+
+        servoInit();
     }
 
     public RobotHardware0(HardwareMap _hardwareMap, List<LynxModule> _allHubs) {
         standardInit(_hardwareMap, _allHubs);
     }
 
-    public RobotHardware0(HardwareMap _hardwareMap, List<LynxModule> _allHubs, MainAutonomous.colorEnum color) {
+    public RobotHardware0(HardwareMap _hardwareMap, List<LynxModule> _allHubs, MainAutonomous.ColorEnum color) {
         standardInit(_hardwareMap, _allHubs);
 
         setCamera(color);
@@ -142,6 +144,9 @@ public class RobotHardware0 extends Thread {
         motorClassMap.get(nameHashMap.get(name)).motor.setPower(power);
     }
     public void setServoPos(Names name, double pos) {
+        if (pos > 1) {pos = 1;}
+        else if (pos < 0) {pos = 0;}
+
         servoClassMap.get(nameHashMap.get(name)).servo.setPosition(pos);
     }
 
@@ -190,8 +195,14 @@ public class RobotHardware0 extends Thread {
         imu.initialize(parameters);
         imu.resetYaw();
     }
+    private void servoInit() {
+        setServoPos(Names.slideToArm, 0);
+        setServoPos(Names.armJoint, 0.1);
+        setServoPos(Names.claw, 0);
+        setServoPos(Names.pickol, 0);
+    }
 
-    private void setCamera(MainAutonomous.colorEnum color) {
+    private void setCamera(MainAutonomous.ColorEnum color) {
         processor = new differenceDetection(color);
         portal = new VisionPortal.Builder()
                 .setCamera(hardwareMap.get(WebcamName.class, "Goof"))

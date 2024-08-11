@@ -30,6 +30,7 @@ import com.acmerobotics.roadrunner.ftc.LynxFirmware;
 import com.acmerobotics.roadrunner.ftc.OverflowEncoder;
 import com.acmerobotics.roadrunner.ftc.PositionVelocityPair;
 import com.acmerobotics.roadrunner.ftc.RawEncoder;
+import org.firstinspires.ftc.teamcode.bettercode.testing.autonomous.roadrunner1_0.messages.DriveCommandMessage;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -41,7 +42,7 @@ import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
-import org.firstinspires.ftc.teamcode.bettercode.testing.autonomous.roadrunner1_0.messages.DriveCommandMessage;
+
 import org.firstinspires.ftc.teamcode.bettercode.testing.autonomous.roadrunner1_0.messages.MecanumCommandMessage;
 import org.firstinspires.ftc.teamcode.bettercode.testing.autonomous.roadrunner1_0.messages.MecanumLocalizerInputsMessage;
 import org.firstinspires.ftc.teamcode.bettercode.testing.autonomous.roadrunner1_0.messages.PoseMessage;
@@ -63,17 +64,17 @@ public final class MecanumDrive {
                 RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD;
 
         // drive model parameters
-        public double inPerTick = 0.002964468724855;
-        public double lateralInPerTick = 0.0024830107185664528;
-        public double trackWidthTicks = 3749.15595316964;
+        public double inPerTick = 0.003101324708697;
+        public double lateralInPerTick = 0.001999779119515247;
+        public double trackWidthTicks = 3590.6237320672158;
 
         // feedforward parameters (in tick units)
-        public double kS = 1.1649686336870624;
-        public double kV = 0.0004175036542578612;
+        public double kS = 1.6791523559476533;
+        public double kV = 0.00040043155811102287;
         public double kA = 0.0001;
 
         // path profile parameters (in inches)
-        public double maxWheelVel = 50;
+        public double maxWheelVel = 30;
         public double minProfileAccel = -30;
         public double maxProfileAccel = 50;
 
@@ -82,9 +83,9 @@ public final class MecanumDrive {
         public double maxAngAccel = Math.PI;
 
         // path controller gains
-        public double axialGain = 5;
-        public double lateralGain = 4.5;
-        public double headingGain = 6; // shared with turn
+        public double axialGain = 7;
+        public double lateralGain = 5;
+        public double headingGain = 5; // shared with turn
 
         public double axialVelGain = 0.0;
         public double lateralVelGain = 0.0;

@@ -10,10 +10,10 @@ public class differenceDetection extends BaseCamera {
     private double staticMid, staticRight, meanMid, meanRight;
     private int color;
 
-    public differenceDetection(MainAutonomous.colorEnum _color) {
-        if (_color == MainAutonomous.colorEnum.RED) {
+    public differenceDetection(MainAutonomous.ColorEnum _color) {
+        if (_color == MainAutonomous.ColorEnum.RED) {
             color = 1;
-        } else if (_color == MainAutonomous.colorEnum.BLUE) {
+        } else if (_color == MainAutonomous.ColorEnum.BLUE) {
             color = 2;
         }
     }
@@ -38,11 +38,11 @@ public class differenceDetection extends BaseCamera {
 
         if (frameGot) {
             if (meanMid > staticMid + 1) {
-                outStr = "mid";
+                propPos = PropPosEnum.MID;
             } else if (meanRight > staticRight + 1) {
-                outStr = "right";
+                propPos = PropPosEnum.RIGHT;
             } else {
-                outStr = "left";
+                propPos = PropPosEnum.LEFT;
             }
         }
 

@@ -4,20 +4,25 @@ import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.bettercode.testing.autonomous.opmodes.MainAutonomous;
 import org.firstinspires.ftc.teamcode.bettercode.testing.hardware.RobotHardware0;
 
 import java.util.List;
 
 public class AutoPickolPopper extends BaseAutoHardware{
-    private ElapsedTime elapsedTime;
+    public ElapsedTime elapsedTime;
+    private Telemetry telemetry;
 
-    public AutoPickolPopper(HardwareMap _hardwareMap, List<LynxModule> _allHubs) {
-        super(_hardwareMap, _allHubs);
+    public AutoPickolPopper(RobotHardware0 _robotHardware, Telemetry _telemetry) {
+        super(_robotHardware);
+        elapsedTime = new ElapsedTime();
+        telemetry = _telemetry;
     }
 
     @Override
     protected void init() {
-        elapsedTime = new ElapsedTime();
+        elapsedTime.reset();
         robotHardware.setServoPos(RobotHardware0.Names.pickol, 0.6);
     }
 
@@ -25,9 +30,8 @@ public class AutoPickolPopper extends BaseAutoHardware{
     protected boolean loop() {
         if (elapsedTime.seconds() > 1) {
             robotHardware.setServoPos(RobotHardware0.Names.pickol, 0);
-            return true;
+            return false;
         }
-
-        return false;
+        return true;
     }
 }

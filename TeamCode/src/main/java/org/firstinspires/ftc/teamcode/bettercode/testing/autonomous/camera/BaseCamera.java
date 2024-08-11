@@ -20,7 +20,12 @@ abstract public class BaseCamera implements VisionProcessor, CameraStreamSource 
     private final AtomicReference<Bitmap> lastFrame =
             new AtomicReference<>(Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565));
 
-    protected String outStr;
+    public enum PropPosEnum {
+        LEFT,
+        MID,
+        RIGHT
+    }
+    protected PropPosEnum propPos = PropPosEnum.LEFT;
 
     protected Rect mid, right;
 
@@ -76,9 +81,9 @@ abstract public class BaseCamera implements VisionProcessor, CameraStreamSource 
         rightRect.setStyle(Paint.Style.STROKE);
         rightRect.setStrokeWidth(scaleCanvasDensity * 4);
 
-        if (outStr == "mid") {
+        if (propPos == PropPosEnum.MID) {
             midRect.setStyle(Paint.Style.FILL);
-        } else if (outStr == "right") {
+        } else if (propPos == PropPosEnum.RIGHT) {
             rightRect.setStyle(Paint.Style.FILL);
         }
 
@@ -86,7 +91,7 @@ abstract public class BaseCamera implements VisionProcessor, CameraStreamSource 
         canvas.drawRect(makeGraphicsRect(mid, scaleBmpPxToCanvasPx), rightRect);
     }
 
-    public String getPropPosition(){
-        return outStr;
+    public PropPosEnum getPropPosition(){
+        return propPos;
     }
 }
