@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.bettercode.testing.autonomous.opmodes;
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.roadrunner.SequentialAction;
+import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
+import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.acmerobotics.roadrunner.Pose2d;
 import org.firstinspires.ftc.teamcode.bettercode.testing.autonomous.roadrunner1_0.MecanumDrive;
@@ -88,14 +90,25 @@ abstract public class MainAutonomous extends OpMode {
         pathPackager.generatePaths(robotHardware.processor.getPropPosition());
         robotHardware.killCamera();
 
-        Actions.runBlocking(
-                new SequentialAction(
-                        pathPackager.getToPurple(),
-                        pathPackager.getPurpleToYellow(),
-                        pickolPopper.getAction(),
-                        pathPackager.getPark()
-                )
-        );
+//        Actions.runBlocking(
+//                new SequentialAction(
+//                        pathPackager.getToPurple(),
+//                        pathPackager.getPurpleToYellow(),
+//                        pickolPopper.getAction(),
+//                        pathPackager.getPark()
+//                )
+//        );
+
+        TrajectoryActionBuilder toPurple = drive.actionBuilder(new Pose2d(14, -63, Math.toRadians(-90)))
+                .setTangent(Math.toRadians(90))
+                .splineTo(new Vector2d(7, -30), Math.toRadians(180));
+
+        TrajectoryActionBuilder toBackdrop = toPurple.fresh()
+                .strafeTo(new Vector2d(19, -30))
+                .setTangent(Math.toRadians(180))
+                .splineTo(new Vector2d(50, -35), Math.toRadians(0));
+
+        Actions.runBlocking(new SequentialAction(toPurple.build(), toBackdrop.build()));
     }
 
     @Override

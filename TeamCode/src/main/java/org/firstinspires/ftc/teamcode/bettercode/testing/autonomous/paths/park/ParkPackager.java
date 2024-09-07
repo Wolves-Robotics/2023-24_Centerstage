@@ -20,9 +20,9 @@ public class ParkPackager extends BasePathSubPackager {
                                   MainAutonomous.TrussPass trussPass,
                                   BaseCamera.PropPosEnum propPos) {
         if (endPos == MainAutonomous.EndPosEnum.EDGE) {
-            return new RedEdge();
+            return new RedEdge(paths);
         } else {
-            return new RedCenter();
+            return new RedCenter(paths);
         }
     }
 
@@ -34,9 +34,9 @@ public class ParkPackager extends BasePathSubPackager {
                                    MainAutonomous.TrussPass trussPass,
                                    BaseCamera.PropPosEnum propPos) {
         if (endPos == MainAutonomous.EndPosEnum.EDGE) {
-            return new BlueEdge();
+            return new BlueEdge(paths);
         } else {
-            return new BlueCenter();
+            return new BlueCenter(paths);
         }
     }
 }

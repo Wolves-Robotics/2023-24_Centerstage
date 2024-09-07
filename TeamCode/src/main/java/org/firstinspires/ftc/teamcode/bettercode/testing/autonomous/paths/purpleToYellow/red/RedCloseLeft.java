@@ -5,11 +5,12 @@ import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
 
 import org.firstinspires.ftc.teamcode.bettercode.testing.autonomous.paths.BasePath;
+import org.firstinspires.ftc.teamcode.bettercode.testing.autonomous.paths.PathPackager;
 import org.firstinspires.ftc.teamcode.bettercode.testing.autonomous.roadrunner1_0.MecanumDrive;
 
 public class RedCloseLeft extends BasePath {
-    public RedCloseLeft(Pose2d _startPos) {
-        super(_startPos);
+    public RedCloseLeft(PathPackager _paths) {
+        super(_paths);
     }
 
     @Override
@@ -19,5 +20,10 @@ public class RedCloseLeft extends BasePath {
                 .setTangent(Math.toRadians(180))
                 .splineTo(new Vector2d(50, -35), Math.toRadians(0))
                 .build();
+    }
+
+    @Override
+    protected Pose2d setlastPose() {
+        return null;
     }
 }

@@ -23,11 +23,11 @@ public class PurpleToYellowPackager extends BasePathSubPackager {
                                   BaseCamera.PropPosEnum propPos) {
         if (startPos == MainAutonomous.StartPosEnum.CLOSE) {
             if (propPos == BaseCamera.PropPosEnum.LEFT) {
-                return new RedCloseLeft();
+                return new RedCloseLeft(paths);
             } else if (propPos == BaseCamera.PropPosEnum.MID) {
-                return new RedCloseMid();
+                return new RedCloseMid(paths);
             } else {
-                return new RedCloseRight();
+                return new RedCloseRight(paths);
             }
         } else {
             if (propPos == BaseCamera.PropPosEnum.LEFT) {
@@ -49,11 +49,11 @@ public class PurpleToYellowPackager extends BasePathSubPackager {
                                    BaseCamera.PropPosEnum propPos) {
         if (startPos == MainAutonomous.StartPosEnum.CLOSE) {
             if (propPos == BaseCamera.PropPosEnum.LEFT) {
-                return new BlueCloseLeft();
+                return new BlueCloseLeft(paths);
             } else if (propPos == BaseCamera.PropPosEnum.MID) {
-                return new BlueCloseMid();
+                return new BlueCloseMid(paths);
             } else {
-                return new BlueCloseRight();
+                return new BlueCloseRight(paths);
             }
         } else {
             if (propPos == BaseCamera.PropPosEnum.LEFT) {

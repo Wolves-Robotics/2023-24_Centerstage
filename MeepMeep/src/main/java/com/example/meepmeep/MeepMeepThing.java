@@ -2,6 +2,7 @@ package com.example.meepmeep;
 
 import com.acmerobotics.roadrunner.ConstantTrajectoryBuilder;
 import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.TrajectoryBuilder;
 import com.acmerobotics.roadrunner.Vector2d;
@@ -20,17 +21,15 @@ public class MeepMeepThing {
                 .setDimensions(17.92127, 14)
                 .build();
 
-        TrajectoryActionBuilder toPurple = myBot.getDrive().actionBuilder(new Pose2d(14, -63, Math.toRadians(-90)))
+
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(14, -63, Math.toRadians(-90)))
                 .setTangent(Math.toRadians(90))
-                .splineTo(new Vector2d(7, -30), Math.toRadians(180));
+                .splineTo(new Vector2d(7, -30), Math.toRadians(180))
 
-        TrajectoryActionBuilder toBackdrop = toPurple.fresh()
-                .lineToX(19)
+                .strafeTo(new Vector2d(19, -30))
                 .setTangent(Math.toRadians(180))
-                .splineTo(new Vector2d(50, -35), Math.toRadians(0));
-
-        myBot.runAction(
-                toBackdrop.build()
+                .splineTo(new Vector2d(50, -35), Math.toRadians(0))
+                .build()
         );
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)

@@ -23,7 +23,7 @@ public class differenceDetection extends BaseCamera {
     }
 
     @Override
-    protected Mat doShit(Mat mat) {
+    protected Mat doStuff(Mat mat) {
         Imgproc.cvtColor(mat, mat, Imgproc.COLOR_RGB2YCrCb);
         Core.extractChannel(mat, mat, color);
 

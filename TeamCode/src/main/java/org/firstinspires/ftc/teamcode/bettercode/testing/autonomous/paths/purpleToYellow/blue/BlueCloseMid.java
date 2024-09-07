@@ -5,10 +5,11 @@ import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
 
 import org.firstinspires.ftc.teamcode.bettercode.testing.autonomous.paths.BasePath;
+import org.firstinspires.ftc.teamcode.bettercode.testing.autonomous.paths.PathPackager;
 import org.firstinspires.ftc.teamcode.bettercode.testing.autonomous.roadrunner1_0.MecanumDrive;
 
 public class BlueCloseMid extends BasePath {
-    public BlueCloseMid(Pose2d _startPos) {
+    public BlueCloseMid(PathPackager _startPos) {
         super(_startPos);
     }
 
@@ -19,5 +20,10 @@ public class BlueCloseMid extends BasePath {
                 .setTangent(Math.toRadians(-90))
                 .splineTo(new Vector2d(50, 28), Math.toRadians(0))
                 .build();
+    }
+
+    @Override
+    protected Pose2d setlastPose() {
+        return null;
     }
 }

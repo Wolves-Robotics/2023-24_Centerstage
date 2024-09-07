@@ -29,9 +29,9 @@ abstract public class BaseCamera implements VisionProcessor, CameraStreamSource 
 
     protected Rect mid, right;
 
-    abstract protected Mat doShit(Mat frame);
+    abstract protected Mat doStuff(Mat frame);
 
-    private void bitmapFuckery(Mat mat) {
+    private void bitmapThing(Mat mat) {
         Bitmap b = Bitmap.createBitmap(mat.width(), mat.height(), Bitmap.Config.RGB_565);
         Utils.matToBitmap(mat, b);
         lastFrame.set(b);
@@ -52,9 +52,9 @@ abstract public class BaseCamera implements VisionProcessor, CameraStreamSource 
 
     @Override
     public Object processFrame(Mat frame, long l) {
-        Mat mat = doShit(frame);
+        Mat mat = doStuff(frame);
 
-        bitmapFuckery(mat);
+        bitmapThing(mat);
 
         return null;
     }
